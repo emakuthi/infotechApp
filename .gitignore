@@ -28,9 +28,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-### Java ###
-*.class
-
 # BlueJ files
 *.ctxt
 
