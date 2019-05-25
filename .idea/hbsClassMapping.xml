@@ -7,6 +7,8 @@
         <entry key="$PROJECT_DIR$/src/main/resources/templates/category-form.hbs" value="App" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/index.hbs" value="App" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/layout.hbs" value="App" />
+        <entry key="$PROJECT_DIR$/src/main/resources/templates/task-detail.hbs" value="App" />
+        <entry key="$PROJECT_DIR$/src/main/resources/templates/task-form.hbs" value="App" />
       </map>
     </option>
   </component>
