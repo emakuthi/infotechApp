@@ -7,7 +7,7 @@
 
 </head>
 <body>
-
+<div class="panel">
 <ul class="nav nav-tabs">
    <li role="presentation" class="active"><a href="/">Home</a></li>
    <li role="presentation"><a href="/tasks/new">Add sections</a></li>
@@ -28,14 +28,17 @@
            {{/if}}
        </ul>
    </li>
+   <a class="logo" href="#">
+      <img src="/images/saflogo.png" width="150px" height="50px" alt="">
+   </a>
 </ul>
-<div class="container">
+<div class="panel">
    <!--begin main template-->
-   <div class="panel-heading">
-        <h1>Technology Division information</h1>
+   <div class="panel-title">
+        <h3>Technology Division information</h3>
    </div>
 
-   <div class="col-md-12">
+   <div class="panel-body">
        {{#block "content"}}
        {{/block}}
 
@@ -45,16 +48,16 @@
 {{#block "footer"}}
    <footer class="footer">
        <div class="container">
-           <hr>
+
            <p class="text-muted">
-              <a href="/categories/delete">delete departments & sections</a><br>
-              <a href="/tasks/delete">delete all sections</a>
+              <a class="btn btn-danger btn-sm"href="/categories/delete">DELETE</a>
+              <a class="btn btn-danger btn-sm" href="/tasks/delete">delete all sections</a>
            </p>
        </div>
    </footer>
-
-   </body>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-   </html>
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
 {{/block}}
