@@ -1,7 +1,7 @@
 {{#partial "content"}}
 
    <p>Description: {{ task.description }}</p>
-   <p>Category of this task: {{ category.name }}</p>
+   <p>department of this section: {{ category.name }}</p>
    <h5>
        Task status:
        {{#if task.published }}
@@ -11,8 +11,8 @@
        {{/if}}
    </h5>
    <p>
-       <a href="/tasks/{{task.id}}/edit">Edit this task</a><br>
-       <a href="/categories/{{task.categoryId}}/tasks/{{task.id}}/delete">DELETE this task</a>
+       <a href="/tasks/{{task.id}}/edit">edit section</a>
+       <a href="/categories/{{task.categoryId}}/tasks/{{task.id}}/delete">delete section</a>
    </p>
 
 {{/partial}}
