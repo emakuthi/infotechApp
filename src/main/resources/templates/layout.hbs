@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>{{#block "title"}}Blog{{/block}}</title>
+   <title>{{#block "title"}}saftechinfo{{/block}}</title>
    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+
 </head>
 <body>
 <ul class="nav nav-tabs">
    <li role="presentation" class="active"><a href="/">Home</a></li>
-   <li role="presentation"><a href="/tasks/new">Add a New Task</a></li>
+   <li role="presentation"><a href="/tasks/new">Add sections</a></li>
 
    <li role="presentation" class="dropdown">
        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-           Category Menu <span class="caret"></span>
+           Departments <span class="caret"></span>
        </a>
        <ul class="dropdown-menu">
            {{#if categories}}
                {{#each categories}}
                    <li><a href="/categories/{{id}}">{{name}}</a></li>
                {{/each}}
-               <li><a href="/categories/new">Add a Category</a></li>
+               <li><a href="/categories/new">Add Department</a></li>
 
            {{else}}
-               <li><a href="/categories/new">Add a Category</a></li>
+               <li><a href="/categories/new">Add Department</a></li>
            {{/if}}
        </ul>
    </li>
@@ -30,7 +31,7 @@
    <!--begin main template-->
    <div class="page-header">
        <img src="/images/rawpixel-com-296621.jpg" width="70%" alt="https://unsplash.com/search/task?photo=Lh_bn9SgRSY">
-       <h1>Welcome to my To Do List. <small>Let's be organized, focused, and efficient.</small></h1>
+       <h1>Technology Division information</h1>
    </div>
 
    <div class="col-md-12">
@@ -45,8 +46,8 @@
        <div class="container">
            <hr>
            <p class="text-muted">
-              <a href="/categories/delete">delete all categories & tasks</a><br>
-              <a href="/tasks/delete">delete all tasks</a>
+              <a href="/categories/delete">delete departments & sections</a><br>
+              <a href="/tasks/delete">delete all sections</a>
            </p>
        </div>
    </footer>
