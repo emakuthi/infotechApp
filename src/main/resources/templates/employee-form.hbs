@@ -24,7 +24,7 @@
        </form>
    {{else}}
        <h5>Add a new employee!</h5>
-       <form action="/employees" method="post">
+       <form action="/employees/new" method="post">
          {{#if employees}}
              <label for="employeeName">Employee Name</label>
              <input id="employeeName" name="employeeName" type="text"></br>
