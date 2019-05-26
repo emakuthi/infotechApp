@@ -1,7 +1,10 @@
+import dao.Sql2oEmployeeDao;
 import models.Category;
 import models.Task;
+import models.Employee;
 import dao.Sql2oCategoryDao;
 import dao.Sql2oTaskDao;
+import dao.Sql2oEmployeeDao;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +20,7 @@ public class App {
         Sql2o sql2o = new Sql2o(connectionString, "", "");
         Sql2oTaskDao taskDao = new Sql2oTaskDao(sql2o);
         Sql2oCategoryDao categoryDao = new Sql2oCategoryDao(sql2o);
+        Sql2oEmployeeDao employeeDao = new Sql2oEmployeeDao(sql2o);
 
         ProcessBuilder process = new ProcessBuilder();
         Integer port;
@@ -175,5 +179,81 @@ public class App {
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////
+
+
+        //get: show new employee form
+        get("/employees/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Task> tasks = taskDao.getAll();
+            model.put("tasks", tasks);
+            return new ModelAndView(model, "employee-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+        //task: process new employee form
+        post("/employees", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Task> allTasks= taskDao.getAll();
+            model.put("tasks", allTasks);
+            String employeeName = req.queryParams("employeeName");
+            String ekNo = req.queryParams("ekNo");
+            String designation = req.queryParams("designation");
+            int taskId = Integer.parseInt(req.queryParams("taskId"));
+            Employee newEmployee = new Employee(employeeName, ekNo, designation,taskId ); //ignore the hardcoded categoryId
+            employeeDao.add(newEmployee);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        //get: show an individual employee that is nested in a task
+        get("/tasks/:task_id/employees/:employee_id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfEmployeeToFind = Integer.parseInt(req.params("employee_id"));
+            Employee foundEmployee = employeeDao.findById(idOfEmployeeToFind);
+            int idOfTaskToFind = Integer.parseInt(req.params("task_id"));
+            Task foundTask = taskDao.findById(idOfTaskToFind);
+            model.put("employee", foundEmployee);
+            model.put("task", foundTask);
+            model.put("tasks", taskDao.getAll()); //refresh list of links for navbar
+            return new ModelAndView(model, "employee-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show a form to update a employee
+        get("/employees/:id/edit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Task> allTasks = taskDao.getAll();
+            model.put("tasks", allTasks);
+            Employee employee = employeeDao.findById(Integer.parseInt(req.params("id")));
+            model.put("employee", employee);
+            model.put("editEmployee", true);
+            return new ModelAndView(model, "employee-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+        //post: process a form to update a employee
+        post("/employees/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int employeeToEditId = Integer.parseInt(req.params("id"));
+            String newEmployeeName = req.queryParams("employeeName");
+            String newEKNo = req.queryParams("ekNo");
+            String newDesignation = req.queryParams("designation");
+            int newTaskId = Integer.parseInt(req.queryParams("taskId"));
+            employeeDao.update(employeeToEditId, newEmployeeName, newTaskId,newDesignation, newEKNo);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete all tasks
+        get("/employees/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            employeeDao.clearAllEmployees();
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
     }
+
 }

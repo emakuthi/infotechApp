@@ -9,7 +9,7 @@ public class Employee {
     private int taskId;
     private boolean completed;
 
-    public Employee(int id, String employeeName, String ekNo, String designation, int taskId, boolean completed) {
+    public Employee(String employeeName, String ekNo, String designation, int taskId) {
         this.id = id;
         this.employeeName = employeeName;
         this.ekNo = ekNo;
