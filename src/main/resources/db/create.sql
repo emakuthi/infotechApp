@@ -11,3 +11,12 @@ CREATE TABLE IF NOT EXISTS categories (
   id int PRIMARY KEY auto_increment,
   name VARCHAR
 );
+
+CREATE TABLE IF NOT EXISTS employees (
+  id int PRIMARY KEY auto_increment,
+  employeeName VARCHAR,
+  taskId INTEGER,
+  ekNo VARCHAR,
+  designation VARCHAR,
+  completed BOOLEAN
+);

@@ -32,9 +32,7 @@ public class Task {
     public LocalDateTime getCreatedAt() { return createdAt; }
 
     public void setId(int id) { this.id = id; }
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public int getCategoryId() { return categoryId; }
     public void setCategoryId(int categoryId) { this.categoryId = categoryId; }

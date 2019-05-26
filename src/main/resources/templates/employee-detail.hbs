@@ -1,0 +1,17 @@
+{{#partial "content"}}
+   <p>Section: {{ task.name }}</p>
+   {{#if employees}}
+          {{#each employees }}
+              <p>{{employeeName}} - {{ekNo}} - {{designation}}</p>
+          {{/each}}
+      {{else}}
+          <p>No Records</p>
+      {{/if}}
+   <p>
+       <a class="btn btn-warning btn-sm"href="/employees/{{employee.id}}/edit">edit</a>
+       <a class="btn btn-warning btn-sm" href="/tasks/{{employee.taskId}}/employees/{{employee.id}}/delete">delete</a>
+   </p>
+
+{{/partial}}
+
+{{> layout.hbs}}

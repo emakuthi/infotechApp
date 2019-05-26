@@ -1,0 +1,57 @@
+{{#partial "content"}}
+   {{#if editEmployee}}
+       <h1>edit this Employee details</h1>
+       <form action="/employees/{{employee.id}}" method="post">
+          <br>
+          <label for="employeeName">Edit Employee Name :</label>
+          <input id="employeeName" name="employeeName" type="text" value="{{employee.employeeName}}">
+          <br>
+          <br>
+          <label for="ekNo">Edit Employee Number: </label>
+          <input id="ekNo" name="ekNo" type="text" value="{{employee.ekNo}}">
+          <br>
+          <label for="designation">Edit Designation</label>
+          <input id="description" name="description" type="text" value="{{task.description}}">
+          <br>
+          <label for="taskId">Update the section:</label>
+          <select id="taskId" name="taskId">
+             {{#each tasks}}
+                <option value="{{id}}">{{description}}</option>
+             {{/each}}
+          </select>
+          <p>Don't see the right section?<a href="/tasks/new">Add a new one first.</a></p>
+          <button type="submit" class="btn btn-success">submit</button>
+       </form>
+   {{else}}
+       <h5>Add a new employee!</h5>
+       <form action="/employees" method="post">
+         {{#if employees}}
+             <label for="employeeName">Employee Name</label>
+             <input id="employeeName" name="employeeName" type="text"></br>
+
+
+             <label for="ekNo">Employee Number</label>
+             <input id="ekNo" name="ekNo" type="text"></br>
+
+
+             <label for="designation">Designation</label>
+             <input id="designation" name="designation" type="text"></br>
+
+
+
+             <label for="taskId">select Section for this Employee:</label>
+             <select id="taskId" name="taskId">
+                 {{#each tasks}}
+                     <option value="{{id}}">{{description}}</option>
+                 {{/each}}
+             </select></br></br>
+             <p>Don't see the right section?<a href="/tasks/new">Add a new one first.</a></p>
+         {{else}}
+             <h3> You'll need to add a section before you add a employee. <a href="/tasks/new">Add one here.</a> </h3>
+         {{/if}}
+         <button type="submit" class="btn btn-default">submit</button>
+       </form>
+   {{/if}}
+{{/partial}}
+
+{{> layout.hbs}}
