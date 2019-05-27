@@ -3,7 +3,14 @@
    <p>Section: {{ task.description }}</p>
    <h5>
        List of Employess:
-       <p>{{employeeName}} - {{ekNo}} - {{designation}}</p>
+
+   {{#if employees}}
+       {{#each employees }}
+           <p>{{employeeName}} {{ekNo}}   {{designation}}</p>
+       {{/each}}
+   {{else}}
+       <p>No employees</p>
+   {{/if}}
 
    </h5>
    <p>

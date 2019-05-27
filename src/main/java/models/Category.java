@@ -1,10 +1,16 @@
 package models;
 
 import java.util.Objects;
+import java.util.ArrayList;
+
 
 public class Category {
     private String name;
     private int id;
+    private ArrayList<Task> tasks;
+
+
+    public Category(){}
 
     public Category(String name) {
         this.name = name;

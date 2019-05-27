@@ -24,8 +24,8 @@
        </form>
    {{else}}
        <h5>Add a new employee!</h5>
-       <form action="/employees/new" method="post">
-         {{#if employees}}
+       <form action="/employees" method="post">
+
              <label for="employeeName">Employee Name</label>
              <input id="employeeName" name="employeeName" type="text"></br>
 
@@ -45,10 +45,6 @@
                      <option value="{{id}}">{{description}}</option>
                  {{/each}}
              </select></br></br>
-             <p>Don't see the right section?<a href="/tasks/new">Add a new one first.</a></p>
-         {{else}}
-             <h3> You'll need to add a section before you add a employee. <a href="/tasks/new">Add one here.</a> </h3>
-         {{/if}}
          <button type="submit" class="btn btn-default">submit</button>
        </form>
    {{/if}}

@@ -5,6 +5,8 @@ import models.Employee;
 import dao.Sql2oCategoryDao;
 import dao.Sql2oTaskDao;
 import dao.Sql2oEmployeeDao;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
@@ -152,9 +154,11 @@ public class App {
             Task foundTask = taskDao.findById(idOfTaskToFind);
             int idOfCategoryToFind = Integer.parseInt(req.params("category_id"));
             Category foundCategory = categoryDao.findById(idOfCategoryToFind);
+            List<Employee> employees = employeeDao.getAll();
             model.put("task", foundTask);
             model.put("category", foundCategory);
             model.put("categories", categoryDao.getAll()); //refresh list of links for navbar
+            model.put("employees", employeeDao.getAll());
             return new ModelAndView(model, "task-detail.hbs");
         }, new HandlebarsTemplateEngine());
 

@@ -1,5 +1,6 @@
 package dao;
 
+import models.Category;
 import models.Task;
 import org.sql2o.*;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Sql2oTaskDao implements TaskDao { //implementing our interface
     @Override
     public List<Task> getAll() {
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM tasks") //raw sql
+             return con.createQuery("SELECT * FROM tasks") //raw sql
                     .executeAndFetch(Task.class); //fetch a list
         }
     }
@@ -38,6 +39,15 @@ public class Sql2oTaskDao implements TaskDao { //implementing our interface
     @Override
     public Task findById(int id) {
         try(Connection con = sql2o.open()){
+            /*
+            *
+            * Category found by id - test
+            *
+            * test.add(task)
+            *
+            * test.getAllTasks()
+            *
+            * */
             return con.createQuery("SELECT * FROM tasks WHERE id = :id")
                     .addParameter("id", id) //key/value pair, key must match above
                     .executeAndFetchFirst(Task.class); //fetch an individual item
