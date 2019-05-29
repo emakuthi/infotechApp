@@ -212,7 +212,7 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
-        //get: show an individual employee that is nested in a task
+        //get: show an individual employee that is nested in a section
         get("/tasks/:task_id/employees/:employee_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEmployeeToFind = Integer.parseInt(req.params("employee_id"));

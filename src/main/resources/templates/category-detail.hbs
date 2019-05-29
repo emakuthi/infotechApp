@@ -1,13 +1,14 @@
 {{#partial "content"}}
    <h1>{{category.name}}</h1>
    <p>Here are all the tasks listed in this category:</p>
-   <ul>
+   <ol>
+
        {{#each tasks}}
            <li>
                <p><a href="/categories/{{category.id}}/tasks/{{id}}">{{description}}</a></p>
            </li>
        {{/each}}
-   </ul>
+   </ol>
    <a class="btn btn-warning btn-sm" href="/categories/{{category.id}}/edit">edit Department</a>
    <a class="btn btn-warning btn-sm" href="/categories/{{category.id}}/delete">delete Department</a>
 {{/partial}}

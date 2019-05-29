@@ -1,25 +1,49 @@
 {{#partial "content"}}
    <p>Department: {{ category.name }}</p>
    <p>Section: {{ task.description }}</p>
-   <h5>
-       List of Employess:
+
+       <div class="panel">
+       <div class="panel-heading">
+       List of Employess
+       </div>
+           <table class="table">
+               <thead>
+               <tr>
+                   <th scope="col">#</th>
+                   <th scope="col">Employee name</th>
+                   <th scope="col">Employee number</th>
+                   <th scope="col">Designation</th>
+               </tr>
+               </thead>
 
    {{#if employees}}
        {{#each employees }}
-           <p>Employee name: {{employeeName}}
-           <p>Employee number: {{ekNo}} </p>
-               <p>Designation: {{designation}}</p>
+       <div class="panel-body">
+           <tbody>
+           <tr>
+               <th scope="row">1</th>
+               <td>{{employeeName}}</td>
+               <td>{{ekNo}}</td>
+               <td>{{designation}}</td>
+           </tr>
+           </tbody>
+       </div>
        {{/each}}
+   </table>
    {{else}}
+   <div class="panel-body">
        <p>No employees</p>
+   </div>
    {{/if}}
 
-   </h5>
+           <div class="panel-footer">
    <p>
+
        <a class="btn btn-warning btn-sm"href="/tasks/{{task.id}}/edit">edit</a>
        <a class="btn btn-warning btn-sm" href="/categories/{{task.categoryId}}/tasks/{{task.id}}/delete">delete</a>
    </p>
-
+       </div>
+   </div>
 {{/partial}}
 
 {{> layout.hbs}}
