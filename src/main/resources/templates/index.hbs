@@ -1,15 +1,15 @@
 {{#partial "content"}}
 
-   <p> List of sections in Technology Division</p>
+   <p> List of Departments in Technology Division</p>
 
-   {{#if tasks}}
-       {{#each tasks }}
-           <p><a href="/categories/{{categoryId}}/tasks/{{id}}">{{description}}</a></p>
+
+   {{#if categories}}
+       {{#each categories }}
+           <p><a href="/categories/{{id}}">{{name}}</a></p>
        {{/each}}
    {{else}}
-       <p>No sections</p>
+       <p>No Departments</p>
    {{/if}}
-
       {{name}}
 {{/partial}}
 

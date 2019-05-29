@@ -41,7 +41,7 @@ public class Sql2oEmployeeDao implements EmployeeDao{
     @Override
     public Employee findById(int id) {
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM employee WHERE id = :id")
+            return con.createQuery("SELECT * FROM employees WHERE id = :id")
                     .addParameter("id", id) //key/value pair, key must match above
                     .executeAndFetchFirst(Employee.class); //fetch an individual item
         }
