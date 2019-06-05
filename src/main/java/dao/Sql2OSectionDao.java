@@ -14,7 +14,7 @@ public class Sql2OSectionDao implements SectionDao { //implementing our interfac
 
     @Override
     public void add(Section section) {
-        String sql = "INSERT INTO tasks (description, categoryId) VALUES (:description, :categoryId)"; //raw sql
+        String sql = "INSERT INTO sections (sectionName , categoryId) VALUES (:sectionName , :categoryId)"; //raw sql
         try(Connection con = sql2o.open()){ //try to open a connection
             int id = (int) con.createQuery(sql, true) //make a new variable
                     .bind(section)
@@ -29,7 +29,7 @@ public class Sql2OSectionDao implements SectionDao { //implementing our interfac
     @Override
     public List<Section> getAll() {
         try(Connection con = sql2o.open()){
-             return con.createQuery("SELECT * FROM tasks") //raw sql
+             return con.createQuery("SELECT * FROM sections") //raw sql
                     .executeAndFetch(Section.class); //fetch a list
         }
     }
@@ -44,21 +44,21 @@ public class Sql2OSectionDao implements SectionDao { //implementing our interfac
             *
             * test.add(task)
             *
-            * test.getAllTasks()
+            * test.getAllSections()
             *
             * */
-            return con.createQuery("SELECT * FROM tasks WHERE id = :id")
+            return con.createQuery("SELECT * FROM sections WHERE id = :id")
                     .addParameter("id", id) //key/value pair, key must match above
                     .executeAndFetchFirst(Section.class); //fetch an individual item
         }
     }
 
     @Override
-    public void update(int id, String newDescription, int newCategoryId){
-        String sql = "UPDATE tasks SET (description, categoryId) = (:description, :categoryId) WHERE id=:id"; //raw sql
+    public void update(int id, String newSectionName , int newCategoryId){
+        String sql = "UPDATE sections SET (sectionName , categoryId) = (:sectionName , :categoryId) WHERE id=:id"; //raw sql
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
-                    .addParameter("description", newDescription)
+                    .addParameter("sectionName ", newSectionName )
                     .addParameter("categoryId", newCategoryId)
                     .addParameter("id", id)
                     .executeUpdate();
@@ -69,7 +69,7 @@ public class Sql2OSectionDao implements SectionDao { //implementing our interfac
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE from tasks WHERE id=:id";
+        String sql = "DELETE from sections WHERE id=:id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
@@ -80,8 +80,8 @@ public class Sql2OSectionDao implements SectionDao { //implementing our interfac
     }
 
     @Override
-    public void clearAllTasks() {
-        String sql = "DELETE from tasks";
+    public void clearAllSections() {
+        String sql = "DELETE from sections";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .executeUpdate();

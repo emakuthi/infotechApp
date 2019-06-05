@@ -2,7 +2,7 @@ SET MODE PostgreSQL;
 
 CREATE TABLE IF NOT EXISTS sections (
   id int PRIMARY KEY auto_increment,
-  description VARCHAR,
+  sectionName VARCHAR,
   completed BOOLEAN,
   categoryid INTEGER
 );

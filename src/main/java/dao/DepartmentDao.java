@@ -14,7 +14,7 @@ public interface DepartmentDao {
 
     //READ
     Department findById(int id);
-    List<Section> getAllTasksByCategory(int categoryId);
+    List<Section> getAllSectionsByCategory(int categoryId);
 
     //UPDATE
     void update(int id, String name);

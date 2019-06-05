@@ -4,22 +4,22 @@ import java.time.LocalDateTime;
 
 public class Section {
 
-    private String description;
+    private String sectionName ;
     private boolean completed;
     private LocalDateTime createdAt;
     private int id;
     private int categoryId;
 
-    public Section(String description, int categoryId) {
-        this.description = description;
+    public Section(String sectionName , int categoryId) {
+        this.sectionName  = sectionName ;
         this.completed = false;
         this.createdAt = LocalDateTime.now();
         this.categoryId = categoryId;
     }
 
-    public void setDescription(String description) { this.description = description; }
-    public String getDescription() {
-        return description;
+    public void setSectionName (String sectionName ) { this.sectionName  = sectionName ; }
+    public String getSectionName () {
+        return sectionName ;
     }
 
     public void setCompleted(boolean completed) { this.completed = completed; }
@@ -43,12 +43,12 @@ public class Section {
         if (completed != section.completed) return false;
         if (id != section.id) return false;
         if (categoryId != section.categoryId) return false;
-        return description != null ? description.equals(section.description) : section.description == null;
+        return sectionName  != null ? sectionName .equals(section.sectionName ) : section.sectionName  == null;
     }
 
     @Override
     public int hashCode() {
-        int result = description != null ? description.hashCode() : 0;
+        int result = sectionName  != null ? sectionName .hashCode() : 0;
         result = 31 * result + (completed ? 1 : 0);
         result = 31 * result + id;
         result = 31 * result + categoryId;

@@ -3,8 +3,8 @@
        <h1>edit this section</h1>
        <form action="/sections/{{section.id}}" method="post">
           <br>
-          <label for="description">edit this section's description</label>
-          <input id="description" name="description" type="text" value="{{section.description}}">
+          <label for="sectionName ">edit this section's sectionName </label>
+          <input id="sectionName " name="sectionName " type="text" value="{{section.sectionName }}">
           <br>
           <label for="categoryId">Update this section's department:</label>
           <select id="categoryId" name="categoryId">
@@ -19,8 +19,8 @@
        <h5>Add a new section!</h5>
        <form action="/sections" method="post">
          {{#if categories}}
-             <label for="description">Section Description</label>
-             <input id="description" name="description" type="text"></br></br>
+             <label for="sectionName ">Section Description</label>
+             <input id="sectionName " name="sectionName " type="text"></br></br>
              <label for="categoryId">select department for this section:</label>
              <select id="categoryId" name="categoryId">
                  {{#each categories}}

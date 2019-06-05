@@ -83,7 +83,7 @@ public class Sql2ODepartmentDao implements DepartmentDao {
     }
 
     @Override
-    public List<Section> getAllTasksByCategory(int categoryId) {
+    public List<Section> getAllSectionsByCategory(int categoryId) {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM tasks WHERE categoryId = :categoryId")
                     .addParameter("categoryId", categoryId)

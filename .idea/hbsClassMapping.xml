@@ -5,10 +5,14 @@
       <map>
         <entry key="$PROJECT_DIR$/src/main/resources/templates/category-detail.hbs" value="App" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/category-form.hbs" value="App" />
+        <entry key="$PROJECT_DIR$/src/main/resources/templates/department-detail.hbs" value="App" />
+        <entry key="$PROJECT_DIR$/src/main/resources/templates/department-form.hbs" value="App" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/employee-detail.hbs" value="App" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/employee-form.hbs" value="App" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/index.hbs" value="App" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/layout.hbs" value="App" />
+        <entry key="$PROJECT_DIR$/src/main/resources/templates/section-detail.hbs" value="App" />
+        <entry key="$PROJECT_DIR$/src/main/resources/templates/section-form.hbs" value="App" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/task-detail.hbs" value="App" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/task-form.hbs" value="App" />
       </map>
