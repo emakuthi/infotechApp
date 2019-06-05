@@ -1,5 +1,5 @@
 {{#partial "content"}}
-   <p>Section: {{ task.name }}</p>
+   <p>Section: {{ section.name }}</p>
    {{#if employees}}
           {{#each employees }}
               <p>{{employeeName}} - {{ekNo}} - {{designation}}</p>
@@ -9,7 +9,7 @@
       {{/if}}
    <p>
        <a class="btn btn-warning btn-sm"href="/employees/{{employee.id}}/edit">edit</a>
-       <a class="btn btn-warning btn-sm" href="/tasks/{{employee.taskId}}/employees/{{employee.id}}/delete">delete</a>
+       <a class="btn btn-warning btn-sm" href="/sections/{{employee.taskId}}/employees/{{employee.id}}/delete">delete</a>
    </p>
 
 {{/partial}}

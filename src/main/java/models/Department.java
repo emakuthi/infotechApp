@@ -4,15 +4,15 @@ import java.util.Objects;
 import java.util.ArrayList;
 
 
-public class Category {
+public class Department {
     private String name;
     private int id;
-    private ArrayList<Task> tasks;
+    private ArrayList<Section> sections;
 
 
-    public Category(){}
+    public Department(){}
 
-    public Category(String name) {
+    public Department(String name) {
         this.name = name;
     }
 
@@ -25,9 +25,9 @@ public class Category {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return id == category.id &&
-                Objects.equals(name, category.name);
+        Department department = (Department) o;
+        return id == department.id &&
+                Objects.equals(name, department.name);
     }
 
     @Override

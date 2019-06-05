@@ -1,6 +1,6 @@
 package dao;
 
-import models.Task;
+import models.Section;
 import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -24,24 +24,24 @@ public class Sql2OSectionDaoTest {
 
     @Test
     public void addingTaskSetsId() throws Exception {
-        Task task = setupNewTask();
-        int originalTaskId = task.getId();
-        taskDao.add(task);
-        assertNotEquals(originalTaskId, task.getId()); //how does this work?
+        Section section = setupNewTask();
+        int originalTaskId = section.getId();
+        taskDao.add(section);
+        assertNotEquals(originalTaskId, section.getId()); //how does this work?
     }
 
     @Test
     public void existingTasksCanBeFoundById() throws Exception {
-        Task task = setupNewTask();
-        taskDao.add(task); //add to dao (takes care of saving)
-        Task foundTask = taskDao.findById(task.getId()); //retrieve
-        assertEquals(task, foundTask); //should be the same
+        Section section = setupNewTask();
+        taskDao.add(section); //add to dao (takes care of saving)
+        Section foundSection = taskDao.findById(section.getId()); //retrieve
+        assertEquals(section, foundSection); //should be the same
     }
 
     @Test
     public void addedTasksAreReturnedFromgetAll() throws Exception {
-        Task task = setupNewTask();
-        taskDao.add(task);
+        Section section = setupNewTask();
+        taskDao.add(section);
         assertEquals(1, taskDao.getAll().size());
     }
 
@@ -53,27 +53,27 @@ public class Sql2OSectionDaoTest {
     @Test
     public void updateChangesTaskContent() throws Exception {
         String initialDescription = "mow the lawn";
-        Task task = new Task (initialDescription, 1);
-        taskDao.add(task);
-        taskDao.update(task.getId(),"brush the cat", 1);
-        Task updatedTask = taskDao.findById(task.getId()); //why do I need to refind this?
-        assertNotEquals(initialDescription, updatedTask.getDescription());
+        Section section = new Section(initialDescription, 1);
+        taskDao.add(section);
+        taskDao.update(section.getId(),"brush the cat", 1);
+        Section updatedSection = taskDao.findById(section.getId()); //why do I need to refind this?
+        assertNotEquals(initialDescription, updatedSection.getDescription());
     }
 
     @Test
     public void deleteByIdDeletesCorrectTask() throws Exception {
-        Task task = setupNewTask();
-        taskDao.add(task);
-        taskDao.deleteById(task.getId());
+        Section section = setupNewTask();
+        taskDao.add(section);
+        taskDao.deleteById(section.getId());
         assertEquals(0, taskDao.getAll().size());
     }
 
     @Test
     public void clearAllClearsAll() throws Exception {
-        Task task = setupNewTask();
-        Task otherTask = new Task("brush the cat", 2);
-        taskDao.add(task);
-        taskDao.add(otherTask);
+        Section section = setupNewTask();
+        Section otherSection = new Section("brush the cat", 2);
+        taskDao.add(section);
+        taskDao.add(otherSection);
         int daoSize = taskDao.getAll().size();
         taskDao.clearAllTasks();
         assertTrue(daoSize > 0 && daoSize > taskDao.getAll().size()); //this is a little overcomplicated, but illustrates well how we might use `assertTrue` in a different way.
@@ -81,13 +81,13 @@ public class Sql2OSectionDaoTest {
 
     @Test
     public void categoryIdIsReturnedCorrectly() throws Exception {
-        Task task = setupNewTask();
-        int originalCatId = task.getCategoryId();
-        taskDao.add(task);
-        assertEquals(originalCatId, taskDao.findById(task.getId()).getCategoryId());
+        Section section = setupNewTask();
+        int originalCatId = section.getCategoryId();
+        taskDao.add(section);
+        assertEquals(originalCatId, taskDao.findById(section.getId()).getCategoryId());
     }
 
-    public Task setupNewTask(){
-        return new Task("mow the lawn", 1);
+    public Section setupNewTask(){
+        return new Section("mow the lawn", 1);
     }
 }

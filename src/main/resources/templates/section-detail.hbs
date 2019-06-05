@@ -1,6 +1,6 @@
 {{#partial "content"}}
-   <p>Department: {{ category.name }}</p>
-   <p>Section: {{ task.description }}</p>
+   <p>Department: {{ department.name }}</p>
+   <p>Section: {{ section.description }}</p>
 
        <div class="panel">
        <div class="panel-heading">
@@ -39,8 +39,8 @@
            <div class="panel-footer">
    <p>
 
-       <a class="btn btn-warning btn-sm"href="/tasks/{{task.id}}/edit">edit</a>
-       <a class="btn btn-warning btn-sm" href="/categories/{{task.categoryId}}/tasks/{{task.id}}/delete">delete</a>
+       <a class="btn btn-warning btn-sm"href="/sections/{{section.id}}/edit">edit</a>
+       <a class="btn btn-warning btn-sm" href="/categories/{{section.categoryId}}/sections/{{section.id}}/delete">delete</a>
    </p>
        </div>
    </div>

@@ -1,18 +1,19 @@
 package dao;
 
-import models.Task;
+import models.Section;
+
 import java.util.List;
 
 public interface SectionDao {
 
     // LIST
-    List<Task> getAll();
+    List<Section> getAll();
 
     // CREATE
-    void add(Task task);
+    void add(Section section);
 
     // READ
-    Task findById(int id);
+    Section findById(int id);
 
     // UPDATE
     void update(int id, String content, int categoryId);

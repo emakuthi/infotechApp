@@ -1,7 +1,7 @@
 package dao;
 
-import models.Category;
-import models.Task;
+import models.Department;
+import models.Section;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -16,33 +16,33 @@ public class Sql2ODepartmentDao implements DepartmentDao {
     }
 
     @Override
-    public void add(Category category) {
+    public void add(Department department) {
         String sql = "INSERT INTO categories (name) VALUES (:name)";
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql, true)
-                    .bind(category)
+                    .bind(department)
                     .executeUpdate()
                     .getKey();
-            category.setId(id);
+            department.setId(id);
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
     }
 
     @Override
-    public List<Category> getAll() {
+    public List<Department> getAll() {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM categories")
-                    .executeAndFetch(Category.class);
+                    .executeAndFetch(Department.class);
         }
     }
 
     @Override
-    public Category findById(int id) {
+    public Department findById(int id) {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM categories WHERE id = :id")
                     .addParameter("id", id)
-                    .executeAndFetchFirst(Category.class);
+                    .executeAndFetchFirst(Department.class);
         }
     }
 
@@ -83,11 +83,11 @@ public class Sql2ODepartmentDao implements DepartmentDao {
     }
 
     @Override
-    public List<Task> getAllTasksByCategory(int categoryId) {
+    public List<Section> getAllTasksByCategory(int categoryId) {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM tasks WHERE categoryId = :categoryId")
                     .addParameter("categoryId", categoryId)
-                    .executeAndFetch(Task.class);
+                    .executeAndFetch(Section.class);
         }
     }
 }

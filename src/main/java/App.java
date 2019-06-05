@@ -1,6 +1,6 @@
 import dao.Sql2oEmployeeDao;
-import models.Category;
-import models.Task;
+import models.Department;
+import models.Section;
 import models.Employee;
 import dao.Sql2ODepartmentDao;
 import dao.Sql2OSectionDao;
@@ -38,17 +38,17 @@ public class App {
         //get: show all tasks in all categories and show all categories
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Category> allCategories = categoryDao.getAll();
+            List<Department> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
-            List<Task> tasks = taskDao.getAll();
-            model.put("tasks", tasks);
+            List<Section> sections = taskDao.getAll();
+            model.put("sections", sections);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
         //show new category form
         get("/categories/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Category> categories = categoryDao.getAll(); //refresh list of links for navbar
+            List<Department> categories = categoryDao.getAll(); //refresh list of links for navbar
             model.put("categories", categories);
             return new ModelAndView(model, "department-form.hbs"); //new
         }, new HandlebarsTemplateEngine());
@@ -57,8 +57,8 @@ public class App {
         post("/categories", (req, res) -> { //new
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
-            Category newCategory = new Category(name);
-            categoryDao.add(newCategory);
+            Department newDepartment = new Department(name);
+            categoryDao.add(newDepartment);
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -84,9 +84,9 @@ public class App {
         get("/categories/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfCategoryToFind = Integer.parseInt(req.params("id")); //new
-            Category foundCategory = categoryDao.findById(idOfCategoryToFind);
-            model.put("category", foundCategory);
-            List<Task> allTasksByCategory = categoryDao.getAllTasksByCategory(idOfCategoryToFind);
+            Department foundDepartment = categoryDao.findById(idOfCategoryToFind);
+            model.put("category", foundDepartment);
+            List<Section> allTasksByCategory = categoryDao.getAllTasksByCategory(idOfCategoryToFind);
             model.put("tasks", allTasksByCategory);
             model.put("categories", categoryDao.getAll()); //refresh list of links for navbar
             return new ModelAndView(model, "department-detail.hbs"); //new
@@ -96,8 +96,8 @@ public class App {
         get("/categories/:id/edit", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("editCategory", true);
-            Category category = categoryDao.findById(Integer.parseInt(req.params("id")));
-            model.put("category", category);
+            Department department = categoryDao.findById(Integer.parseInt(req.params("id")));
+            model.put("department", department);
             model.put("categories", categoryDao.getAll()); //refresh list of links for navbar
             return new ModelAndView(model, "department-form.hbs");
         }, new HandlebarsTemplateEngine());
@@ -127,7 +127,7 @@ public class App {
         //get: show new task form
         get("/tasks/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Category> categories = categoryDao.getAll();
+            List<Department> categories = categoryDao.getAll();
             model.put("categories", categories);
             return new ModelAndView(model, "section-form.hbs");
         }, new HandlebarsTemplateEngine());
@@ -135,12 +135,12 @@ public class App {
         //task: process new task form
         post("/tasks", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Category> allCategories = categoryDao.getAll();
+            List<Department> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
             String description = req.queryParams("description");
             int categoryId = Integer.parseInt(req.queryParams("categoryId"));
-            Task newTask = new Task(description, categoryId ); //ignore the hardcoded categoryId
-            taskDao.add(newTask);
+            Section newSection = new Section(description, categoryId ); //ignore the hardcoded categoryId
+            taskDao.add(newSection);
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -149,12 +149,12 @@ public class App {
         get("/categories/:category_id/tasks/:task_id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfTaskToFind = Integer.parseInt(req.params("task_id"));
-            Task foundTask = taskDao.findById(idOfTaskToFind);
+            Section foundSection = taskDao.findById(idOfTaskToFind);
             int idOfCategoryToFind = Integer.parseInt(req.params("category_id"));
-            Category foundCategory = categoryDao.findById(idOfCategoryToFind);
+            Department foundDepartment = categoryDao.findById(idOfCategoryToFind);
             List<Employee> employees = employeeDao.getAll();
-            model.put("task", foundTask);
-            model.put("category", foundCategory);
+            model.put("task", foundSection);
+            model.put("category", foundDepartment);
             model.put("categories", categoryDao.getAll()); //refresh list of links for navbar
             model.put("employees", employeeDao.getAll());
             return new ModelAndView(model, "section-detail.hbs");
@@ -163,10 +163,10 @@ public class App {
         //get: show a form to update a task
         get("/tasks/:id/edit", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Category> allCategories = categoryDao.getAll();
+            List<Department> allCategories = categoryDao.getAll();
             model.put("categories", allCategories);
-            Task task = taskDao.findById(Integer.parseInt(req.params("id")));
-            model.put("task", task);
+            Section section = taskDao.findById(Integer.parseInt(req.params("id")));
+            model.put("section", section);
             model.put("editTask", true);
             return new ModelAndView(model, "section-form.hbs");
         }, new HandlebarsTemplateEngine());
@@ -189,8 +189,8 @@ public class App {
         //get: show new employee form
         get("/employees/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Task> tasks = taskDao.getAll();
-            model.put("tasks", tasks);
+            List<Section> sections = taskDao.getAll();
+            model.put("sections", sections);
             return new ModelAndView(model, "employee-form.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -198,8 +198,8 @@ public class App {
         //task: process new employee form
         post("/employees", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Task> allTasks= taskDao.getAll();
-            model.put("tasks", allTasks);
+            List<Section> allSections = taskDao.getAll();
+            model.put("tasks", allSections);
             String employeeName = req.queryParams("employeeName");
             String ekNo = req.queryParams("ekNo");
             String designation = req.queryParams("designation");
@@ -216,9 +216,9 @@ public class App {
             int idOfEmployeeToFind = Integer.parseInt(req.params("employee_id"));
             Employee foundEmployee = employeeDao.findById(idOfEmployeeToFind);
             int idOfTaskToFind = Integer.parseInt(req.params("task_id"));
-            Task foundTask = taskDao.findById(idOfTaskToFind);
+            Section foundSection = taskDao.findById(idOfTaskToFind);
             model.put("employee", foundEmployee);
-            model.put("task", foundTask);
+            model.put("task", foundSection);
             model.put("tasks", taskDao.getAll()); //refresh list of links for navbar
             return new ModelAndView(model, "employee-detail.hbs");
         }, new HandlebarsTemplateEngine());
@@ -226,8 +226,8 @@ public class App {
         //get: show a form to update a employee
         get("/employees/:id/edit", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Task> allTasks = taskDao.getAll();
-            model.put("tasks", allTasks);
+            List<Section> allSections = taskDao.getAll();
+            model.put("tasks", allSections);
             Employee employee = employeeDao.findById(Integer.parseInt(req.params("id")));
             model.put("employee", employee);
             model.put("editEmployee", true);

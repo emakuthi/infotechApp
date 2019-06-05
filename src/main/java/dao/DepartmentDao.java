@@ -1,20 +1,20 @@
 package dao;
 
-import models.Category;
-import models.Task;
+import models.Department;
+import models.Section;
 import java.util.List;
 
 public interface DepartmentDao {
 
     //LIST
-    List<Category> getAll();
+    List<Department> getAll();
 
     //CREATE
-    void add (Category category);
+    void add (Department department);
 
     //READ
-    Category findById(int id);
-    List<Task> getAllTasksByCategory(int categoryId);
+    Department findById(int id);
+    List<Section> getAllTasksByCategory(int categoryId);
 
     //UPDATE
     void update(int id, String name);

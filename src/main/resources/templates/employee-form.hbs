@@ -11,15 +11,15 @@
           <input id="ekNo" name="ekNo" type="text" value="{{employee.ekNo}}">
           <br>
           <label for="designation">Edit Designation</label>
-          <input id="description" name="description" type="text" value="{{task.description}}">
+          <input id="description" name="description" type="text" value="{{section.description}}">
           <br>
           <label for="taskId">Update the section:</label>
           <select id="taskId" name="taskId">
-             {{#each tasks}}
+             {{#each sections}}
                 <option value="{{id}}">{{description}}</option>
              {{/each}}
           </select>
-          <p>Don't see the right section?<a href="/tasks/new">Add a new one first.</a></p>
+          <p>Don't see the right section?<a href="/sections/new">Add a new one first.</a></p>
           <button type="submit" class="btn btn-success">submit</button>
        </form>
    {{else}}
@@ -41,7 +41,7 @@
 
              <label for="taskId">select Section for this Employee:</label>
              <select id="taskId" name="taskId">
-                 {{#each tasks}}
+                 {{#each sections}}
                      <option value="{{id}}">{{description}}</option>
                  {{/each}}
              </select></br></br>

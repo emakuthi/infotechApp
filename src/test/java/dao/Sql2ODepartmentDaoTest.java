@@ -1,7 +1,7 @@
 package dao;
 
-import models.Category;
-import models.Task;
+import models.Department;
+import models.Section;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,24 +34,24 @@ public class Sql2ODepartmentDaoTest {
 
     @Test
     public void addingCategorySetsId() throws Exception {
-        Category category = setupNewCategory();
-        int originalCategoryId = category.getId();
-        categoryDao.add(category);
-        assertNotEquals(originalCategoryId, category.getId());
+        Department department = setupNewCategory();
+        int originalCategoryId = department.getId();
+        categoryDao.add(department);
+        assertNotEquals(originalCategoryId, department.getId());
     }
 
     @Test
     public void existingCategoriesCanBeFoundById() throws Exception {
-        Category category = setupNewCategory();
-        categoryDao.add(category);
-        Category foundCategory = categoryDao.findById(category.getId());
-        assertEquals(category, foundCategory);
+        Department department = setupNewCategory();
+        categoryDao.add(department);
+        Department foundDepartment = categoryDao.findById(department.getId());
+        assertEquals(department, foundDepartment);
     }
 
     @Test
     public void addedCategoriesAreReturnedFromGetAll() throws Exception {
-        Category category = setupNewCategory();
-        categoryDao.add(category);
+        Department department = setupNewCategory();
+        categoryDao.add(department);
         assertEquals(1, categoryDao.getAll().size());
     }
 
@@ -63,27 +63,27 @@ public class Sql2ODepartmentDaoTest {
     @Test
     public void updateChangesCategoryContent() throws Exception {
         String initialDescription = "Yardwork";
-        Category category = new Category (initialDescription);
-        categoryDao.add(category);
-        categoryDao.update(category.getId(),"Cleaning");
-        Category updatedCategory = categoryDao.findById(category.getId());
-        assertNotEquals(initialDescription, updatedCategory.getName());
+        Department department = new Department(initialDescription);
+        categoryDao.add(department);
+        categoryDao.update(department.getId(),"Cleaning");
+        Department updatedDepartment = categoryDao.findById(department.getId());
+        assertNotEquals(initialDescription, updatedDepartment.getName());
     }
 
     @Test
     public void deleteByIdDeletesCorrectCategory() throws Exception {
-        Category category = setupNewCategory();
-        categoryDao.add(category);
-        categoryDao.deleteById(category.getId());
+        Department department = setupNewCategory();
+        categoryDao.add(department);
+        categoryDao.deleteById(department.getId());
         assertEquals(0, categoryDao.getAll().size());
     }
 
     @Test
     public void clearAllClearsAllCategories() throws Exception {
-        Category category = setupNewCategory();
-        Category otherCategory = new Category("Cleaning");
-        categoryDao.add(category);
-        categoryDao.add(otherCategory);
+        Department department = setupNewCategory();
+        Department otherDepartment = new Department("Cleaning");
+        categoryDao.add(department);
+        categoryDao.add(otherDepartment);
         int daoSize = categoryDao.getAll().size();
         categoryDao.clearAllCategories();
         assertTrue(daoSize > 0 && daoSize > categoryDao.getAll().size());
@@ -91,22 +91,22 @@ public class Sql2ODepartmentDaoTest {
 
     @Test
     public void getAllTasksByCategoryReturnsTasksCorrectly() throws Exception {
-        Category category = setupNewCategory();
-        categoryDao.add(category);
-        int categoryId = category.getId();
-        Task newTask = new Task("mow the lawn", categoryId);
-        Task otherTask = new Task("pull weeds", categoryId);
-        Task thirdTask = new Task("trim hedge", categoryId);
-        taskDao.add(newTask);
-        taskDao.add(otherTask); //we are not adding task 3 so we can test things precisely.
+        Department department = setupNewCategory();
+        categoryDao.add(department);
+        int categoryId = department.getId();
+        Section newSection = new Section("mow the lawn", categoryId);
+        Section otherSection = new Section("pull weeds", categoryId);
+        Section thirdSection = new Section("trim hedge", categoryId);
+        taskDao.add(newSection);
+        taskDao.add(otherSection); //we are not adding task 3 so we can test things precisely.
         assertEquals(2, categoryDao.getAllTasksByCategory(categoryId).size());
-        assertTrue(categoryDao.getAllTasksByCategory(categoryId).contains(newTask));
-        assertTrue(categoryDao.getAllTasksByCategory(categoryId).contains(otherTask));
-        assertFalse(categoryDao.getAllTasksByCategory(categoryId).contains(thirdTask)); //things are accurate!
+        assertTrue(categoryDao.getAllTasksByCategory(categoryId).contains(newSection));
+        assertTrue(categoryDao.getAllTasksByCategory(categoryId).contains(otherSection));
+        assertFalse(categoryDao.getAllTasksByCategory(categoryId).contains(thirdSection)); //things are accurate!
     }
 
     // helper method
-    public Category setupNewCategory(){
-        return new Category("Yardwork");
+    public Department setupNewCategory(){
+        return new Department("Yardwork");
     }
 }
