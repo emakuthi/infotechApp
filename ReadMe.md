@@ -46,7 +46,7 @@ there are currently no known bugs experienced on the website but feedback on bug
 
 ## live link:
 
-$< https://powerful-mesa-27568.herokuapp.com/>
+https://infotechapp.herokuapp.com/
 
 # clone into repository
 
