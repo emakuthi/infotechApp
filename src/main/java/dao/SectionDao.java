@@ -16,7 +16,7 @@ public interface SectionDao {
     Section findById(int id);
 
     // UPDATE
-    void update(int id, String sectionName  , int categoryId);
+    void update(int id, String sectionName  , int departmentId);
 
     // DELETE
     void deleteById(int id);

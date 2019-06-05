@@ -14,12 +14,12 @@ public interface DepartmentDao {
 
     //READ
     Department findById(int id);
-    List<Section> getAllSectionsByCategory(int categoryId);
+    List<Section> getAllSectionsByDepartment(int departmentId);
 
     //UPDATE
     void update(int id, String name);
 
     //DELETE
     void deleteById(int id);
-    void clearAllCategories();
+    void clearAllDepartments();
 }

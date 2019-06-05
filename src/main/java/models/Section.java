@@ -8,13 +8,13 @@ public class Section {
     private boolean completed;
     private LocalDateTime createdAt;
     private int id;
-    private int categoryId;
+    private int departmentId;
 
-    public Section(String sectionName , int categoryId) {
+    public Section(String sectionName , int departmentId) {
         this.sectionName  = sectionName ;
         this.completed = false;
         this.createdAt = LocalDateTime.now();
-        this.categoryId = categoryId;
+        this.departmentId = departmentId;
     }
 
     public void setSectionName (String sectionName ) { this.sectionName  = sectionName ; }
@@ -32,8 +32,8 @@ public class Section {
     public void setId(int id) { this.id = id; }
     public int getId() { return id; }
 
-    public int getCategoryId() { return categoryId; }
-    public void setCategoryId(int categoryId) { this.categoryId = categoryId; }
+    public int getDepartmentId() { return departmentId; }
+    public void setDepartmentId(int departmentId) { this.departmentId = departmentId; }
 
     @Override
     public boolean equals(Object o) {
@@ -42,7 +42,7 @@ public class Section {
         Section section = (Section) o;
         if (completed != section.completed) return false;
         if (id != section.id) return false;
-        if (categoryId != section.categoryId) return false;
+        if (departmentId != section.departmentId) return false;
         return sectionName  != null ? sectionName .equals(section.sectionName ) : section.sectionName  == null;
     }
 
@@ -51,7 +51,7 @@ public class Section {
         int result = sectionName  != null ? sectionName .hashCode() : 0;
         result = 31 * result + (completed ? 1 : 0);
         result = 31 * result + id;
-        result = 31 * result + categoryId;
+        result = 31 * result + departmentId;
         return result;
     }
 }

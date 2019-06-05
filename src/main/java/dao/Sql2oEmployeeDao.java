@@ -17,7 +17,7 @@ public class Sql2oEmployeeDao implements EmployeeDao{
 
     @Override
     public void add(Employee employee) {
-        String sql = "INSERT INTO employees (employeeName, taskId, ekNo, designation) VALUES (:employeeName, :taskId, :ekNo, :designation)"; //raw sql
+        String sql = "INSERT INTO employees (employeeName, sectionId, ekNo, designation) VALUES (:employeeName, :sectionId, :ekNo, :designation)"; //raw sql
         try(Connection con = sql2o.open()){ //try to open a connection
             int id = (int) con.createQuery(sql, true) //make a new variable
                     .bind(employee)
@@ -49,11 +49,11 @@ public class Sql2oEmployeeDao implements EmployeeDao{
 
     @Override
     public void update(int id, String newEmployeeName, int newTaskId, String newEkNo, String newDesignation){
-        String sql = "UPDATE employees SET (employeeName, taskId, ekNo, designation) = (:employeeName, :taskId, :ekNo, :designation) WHERE id=:id"; //raw sql
+        String sql = "UPDATE employees SET (employeeName, sectionId, ekNo, designation) = (:employeeName, :sectionId, :ekNo, :designation) WHERE id=:id"; //raw sql
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("employeeName", newEmployeeName)
-                    .addParameter("taskId", newTaskId)
+                    .addParameter("sectionId", newTaskId)
                     .addParameter("id", id)
                     .addParameter("ekNo", newEkNo)
                     .addParameter("designation", newDesignation)

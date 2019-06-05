@@ -14,7 +14,7 @@ public class Sql2OSectionDao implements SectionDao { //implementing our interfac
 
     @Override
     public void add(Section section) {
-        String sql = "INSERT INTO sections (sectionName , categoryId) VALUES (:sectionName , :categoryId)"; //raw sql
+        String sql = "INSERT INTO sections (sectionName , departmentId) VALUES (:sectionName , :departmentId)"; //raw sql
         try(Connection con = sql2o.open()){ //try to open a connection
             int id = (int) con.createQuery(sql, true) //make a new variable
                     .bind(section)
@@ -38,15 +38,6 @@ public class Sql2OSectionDao implements SectionDao { //implementing our interfac
     @Override
     public Section findById(int id) {
         try(Connection con = sql2o.open()){
-            /*
-            *
-            * Department found by id - test
-            *
-            * test.add(task)
-            *
-            * test.getAllSections()
-            *
-            * */
             return con.createQuery("SELECT * FROM sections WHERE id = :id")
                     .addParameter("id", id) //key/value pair, key must match above
                     .executeAndFetchFirst(Section.class); //fetch an individual item
@@ -54,12 +45,12 @@ public class Sql2OSectionDao implements SectionDao { //implementing our interfac
     }
 
     @Override
-    public void update(int id, String newSectionName , int newCategoryId){
-        String sql = "UPDATE sections SET (sectionName , categoryId) = (:sectionName , :categoryId) WHERE id=:id"; //raw sql
+    public void update(int id, String newSectionName , int newDepartmentId){
+        String sql = "UPDATE sections SET (sectionName , departmentId) = (:sectionName , :departmentId) WHERE id=:id"; //raw sql
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("sectionName ", newSectionName )
-                    .addParameter("categoryId", newCategoryId)
+                    .addParameter("departmentId", newDepartmentId)
                     .addParameter("id", id)
                     .executeUpdate();
         } catch (Sql2oException ex) {

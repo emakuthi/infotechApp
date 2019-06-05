@@ -1,14 +1,14 @@
 {{#partial "content"}}
-   {{#if editCategory}}
+   {{#if editDepartment}}
        <h1>Edit this department!</h1>
-       <form action="/categories/{{department.id}}" method="post">
+       <form action="/departments/{{department.id}}" method="post">
          <label for="name">Edit this department's name</label>
-         <input id="newCategoryName" name="newCategoryName" type="text" value="{{department.name}}">
+         <input id="newDepartmentName" name="newDepartmentName" type="text" value="{{department.name}}">
          <button type="submit" class="btn btn-warning">submit</button>
        </form>
   {{else}}
        <h5>Add a new department!</h5>
-       <form action="/categories" method="post">
+       <form action="/departments" method="post">
          <label for="name">department Name</label>
          <input id="name" name="name" type="text">
          <button type="submit" class="btn btn-success btn-sm">submit</button>

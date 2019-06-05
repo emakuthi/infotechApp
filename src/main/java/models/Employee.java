@@ -6,15 +6,15 @@ public class Employee {
     private String employeeName;
     private String ekNo;
     private String designation;
-    private int taskId;
+    private int sectionId;
     private boolean completed;
 
-    public Employee(String employeeName, String ekNo, String designation, int taskId) {
+    public Employee(String employeeName, String ekNo, String designation, int sectionId) {
         this.id = id;
         this.employeeName = employeeName;
         this.ekNo = ekNo;
         this.designation = designation;
-        this.taskId = taskId;
+        this.sectionId = sectionId;
         this.completed = false;
     }
 
@@ -35,9 +35,9 @@ public class Employee {
 
     public void setDesignation(String designation) { this.designation = designation; }
 
-    public int getTaskId() { return taskId; }
+    public int getSectionId() { return sectionId; }
 
-    public void setTaskId(int taskId) { this.taskId = taskId; }
+    public void setSectionId(int sectionId) { this.sectionId = sectionId; }
 
     public boolean isCompleted() { return completed; }
 
@@ -50,7 +50,7 @@ public class Employee {
         Employee employee = (Employee) o;
         if (completed != employee.completed) return false;
         if (id != employee.id) return false;
-        if (taskId != employee.taskId) return false;
+        if (sectionId != employee.sectionId) return false;
         return employeeName != null ? employeeName.equals(employee.employeeName) : employee.employeeName == null;
     }
 
@@ -59,7 +59,7 @@ public class Employee {
         int result = employeeName!= null ? employeeName.hashCode() : 0;
         result = 31 * result + (completed ? 1 : 0);
         result = 31 * result + id;
-        result = 31 * result + taskId;
+        result = 31 * result + sectionId;
         return result;
     }
 }

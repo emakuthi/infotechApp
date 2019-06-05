@@ -17,7 +17,7 @@ public class Sql2ODepartmentDao implements DepartmentDao {
 
     @Override
     public void add(Department department) {
-        String sql = "INSERT INTO categories (name) VALUES (:name)";
+        String sql = "INSERT INTO departments (name) VALUES (:name)";
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql, true)
                     .bind(department)
@@ -32,7 +32,7 @@ public class Sql2ODepartmentDao implements DepartmentDao {
     @Override
     public List<Department> getAll() {
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM categories")
+            return con.createQuery("SELECT * FROM departments")
                     .executeAndFetch(Department.class);
         }
     }
@@ -40,7 +40,7 @@ public class Sql2ODepartmentDao implements DepartmentDao {
     @Override
     public Department findById(int id) {
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM categories WHERE id = :id")
+            return con.createQuery("SELECT * FROM departments WHERE id = :id")
                     .addParameter("id", id)
                     .executeAndFetchFirst(Department.class);
         }
@@ -48,7 +48,7 @@ public class Sql2ODepartmentDao implements DepartmentDao {
 
     @Override
     public void update(int id, String newName){
-        String sql = "UPDATE categories SET name = :name WHERE id=:id";
+        String sql = "UPDATE departments SET name = :name WHERE id=:id";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("name", newName)
@@ -61,7 +61,7 @@ public class Sql2ODepartmentDao implements DepartmentDao {
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE from categories WHERE id=:id"; //raw sql
+        String sql = "DELETE from departments WHERE id=:id"; //raw sql
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
@@ -72,8 +72,8 @@ public class Sql2ODepartmentDao implements DepartmentDao {
     }
 
     @Override
-    public void clearAllCategories() {
-        String sql = "DELETE from categories"; //raw sql
+    public void clearAllDepartments() {
+        String sql = "DELETE from departments"; //raw sql
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .executeUpdate();
@@ -83,10 +83,10 @@ public class Sql2ODepartmentDao implements DepartmentDao {
     }
 
     @Override
-    public List<Section> getAllSectionsByCategory(int categoryId) {
+    public List<Section> getAllSectionsByDepartment(int departmentId) {
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM tasks WHERE categoryId = :categoryId")
-                    .addParameter("categoryId", categoryId)
+            return con.createQuery("SELECT * FROM Sections WHERE departmentId = :departmentId")
+                    .addParameter("departmentId", departmentId)
                     .executeAndFetch(Section.class);
         }
     }

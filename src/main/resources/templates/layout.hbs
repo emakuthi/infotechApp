@@ -18,14 +18,14 @@
           Add departments <span class="caret"></span>
        </a>
        <ul class="dropdown-menu">
-           {{#if categories}}
-               {{#each categories}}
-                   <li><a href="/categories/{{id}}">{{name}}</a></li>
+           {{#if departments}}
+               {{#each departments}}
+                   <li><a href="/departments/{{id}}">{{name}}</a></li>
                {{/each}}
-               <li><a href="/categories/new">Add Department</a></li>
+               <li><a href="/departments/new">Add Department</a></li>
 
            {{else}}
-               <li><a href="/categories/new">Add Department</a></li>
+               <li><a href="/departments/new">Add Department</a></li>
            {{/if}}
        </ul>
    </li>
@@ -53,7 +53,7 @@
        <div class="container">
 
            <p class="text-muted">
-              <a class="btn btn-danger btn-sm"href="/categories/delete">DELETE</a>
+              <a class="btn btn-danger btn-sm"href="/departments/delete">DELETE</a>
               <a class="btn btn-danger btn-sm" href="/sections/delete">delete all sections</a>
            </p>
        </div>

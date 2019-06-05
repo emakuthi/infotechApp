@@ -13,8 +13,8 @@
           <label for="designation">Edit Designation</label>
           <input id="sectionName " name="sectionName " type="text" value="{{section.sectionName }}">
           <br>
-          <label for="taskId">Update the section:</label>
-          <select id="taskId" name="taskId">
+          <label for="sectionId">Update the section:</label>
+          <select id="sectionId" name="sectionId">
              {{#each sections}}
                 <option value="{{id}}">{{sectionName }}</option>
              {{/each}}
@@ -39,8 +39,8 @@
 
 
 
-             <label for="taskId">select Section for this Employee:</label>
-             <select id="taskId" name="taskId">
+             <label for="sectionId">select Section for this Employee:</label>
+             <select id="sectionId" name="sectionId">
                  {{#each sections}}
                      <option value="{{id}}">{{sectionName }}</option>
                  {{/each}}
