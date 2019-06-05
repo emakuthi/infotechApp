@@ -13,17 +13,17 @@ import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-public class Sql2oCategoryDaoTest {
-    private Sql2oCategoryDao categoryDao;
-    private Sql2oTaskDao taskDao;
+public class Sql2ODepartmentDaoTest {
+    private Sql2ODepartmentDao categoryDao;
+    private Sql2OSectionDao taskDao;
     private Connection conn;
 
     @Before
     public void setUp() throws Exception {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
-        categoryDao = new Sql2oCategoryDao(sql2o);
-        taskDao = new Sql2oTaskDao(sql2o);
+        categoryDao = new Sql2ODepartmentDao(sql2o);
+        taskDao = new Sql2OSectionDao(sql2o);
         conn = sql2o.open();
     }
 

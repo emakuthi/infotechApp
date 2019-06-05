@@ -4,7 +4,7 @@ import models.Category;
 import models.Task;
 import java.util.List;
 
-public interface CategoryDao {
+public interface DepartmentDao {
 
     //LIST
     List<Category> getAll();

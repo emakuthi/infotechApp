@@ -1,15 +1,14 @@
 package dao;
 
-import models.Category;
 import models.Task;
 import org.sql2o.*;
 import java.util.List;
 
-public class Sql2oTaskDao implements TaskDao { //implementing our interface
+public class Sql2OSectionDao implements SectionDao { //implementing our interface
 
     private final Sql2o sql2o;
 
-    public Sql2oTaskDao(Sql2o sql2o){
+    public Sql2OSectionDao(Sql2o sql2o){
         this.sql2o = sql2o; //making the sql2o object available everywhere so we can call methods in it
     }
 

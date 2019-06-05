@@ -7,11 +7,11 @@ import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 import java.util.List;
 
-public class Sql2oCategoryDao implements CategoryDao {
+public class Sql2ODepartmentDao implements DepartmentDao {
 
     private final Sql2o sql2o;
 
-    public Sql2oCategoryDao(Sql2o sql2o){
+    public Sql2ODepartmentDao(Sql2o sql2o){
         this.sql2o = sql2o;
     }
 

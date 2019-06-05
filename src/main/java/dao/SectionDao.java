@@ -3,7 +3,7 @@ package dao;
 import models.Task;
 import java.util.List;
 
-public interface TaskDao {
+public interface SectionDao {
 
     // LIST
     List<Task> getAll();

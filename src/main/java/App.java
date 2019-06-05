@@ -2,11 +2,9 @@ import dao.Sql2oEmployeeDao;
 import models.Category;
 import models.Task;
 import models.Employee;
-import dao.Sql2oCategoryDao;
-import dao.Sql2oTaskDao;
-import dao.Sql2oEmployeeDao;
+import dao.Sql2ODepartmentDao;
+import dao.Sql2OSectionDao;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,8 +18,8 @@ public class App {
         staticFileLocation("/public");
         String connectionString = "jdbc:h2:~/todolist.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
-        Sql2oTaskDao taskDao = new Sql2oTaskDao(sql2o);
-        Sql2oCategoryDao categoryDao = new Sql2oCategoryDao(sql2o);
+        Sql2OSectionDao taskDao = new Sql2OSectionDao(sql2o);
+        Sql2ODepartmentDao categoryDao = new Sql2ODepartmentDao(sql2o);
         Sql2oEmployeeDao employeeDao = new Sql2oEmployeeDao(sql2o);
 
         ProcessBuilder process = new ProcessBuilder();
@@ -52,7 +50,7 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             List<Category> categories = categoryDao.getAll(); //refresh list of links for navbar
             model.put("categories", categories);
-            return new ModelAndView(model, "category-form.hbs"); //new
+            return new ModelAndView(model, "department-form.hbs"); //new
         }, new HandlebarsTemplateEngine());
 
         //post: process new category form
@@ -91,7 +89,7 @@ public class App {
             List<Task> allTasksByCategory = categoryDao.getAllTasksByCategory(idOfCategoryToFind);
             model.put("tasks", allTasksByCategory);
             model.put("categories", categoryDao.getAll()); //refresh list of links for navbar
-            return new ModelAndView(model, "category-detail.hbs"); //new
+            return new ModelAndView(model, "department-detail.hbs"); //new
         }, new HandlebarsTemplateEngine());
 
         //get: show a form to update a category
@@ -101,7 +99,7 @@ public class App {
             Category category = categoryDao.findById(Integer.parseInt(req.params("id")));
             model.put("category", category);
             model.put("categories", categoryDao.getAll()); //refresh list of links for navbar
-            return new ModelAndView(model, "category-form.hbs");
+            return new ModelAndView(model, "department-form.hbs");
         }, new HandlebarsTemplateEngine());
 
         //post: process a form to update a category
@@ -131,7 +129,7 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             List<Category> categories = categoryDao.getAll();
             model.put("categories", categories);
-            return new ModelAndView(model, "task-form.hbs");
+            return new ModelAndView(model, "section-form.hbs");
         }, new HandlebarsTemplateEngine());
 
         //task: process new task form
@@ -159,7 +157,7 @@ public class App {
             model.put("category", foundCategory);
             model.put("categories", categoryDao.getAll()); //refresh list of links for navbar
             model.put("employees", employeeDao.getAll());
-            return new ModelAndView(model, "task-detail.hbs");
+            return new ModelAndView(model, "section-detail.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: show a form to update a task
@@ -170,7 +168,7 @@ public class App {
             Task task = taskDao.findById(Integer.parseInt(req.params("id")));
             model.put("task", task);
             model.put("editTask", true);
-            return new ModelAndView(model, "task-form.hbs");
+            return new ModelAndView(model, "section-form.hbs");
         }, new HandlebarsTemplateEngine());
 
         //post: process a form to update a task
